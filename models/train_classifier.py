@@ -89,7 +89,6 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
-    The transformers in the pipeline can be cached using ``memory`` argument.
 
     '''
     Returns f1 score, precision, and recall for each category.
