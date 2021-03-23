@@ -40,6 +40,9 @@ def clean_data(df):
     
         # convert column from string to numeric
         categories[column] = categories[column].astype(int)
+        
+        # convert values > 1 to 1
+        categories[column] = categories[column].where(categories[column] < 1, 1)
     
     
     # drop the original categories column from `df`
@@ -60,7 +63,7 @@ def save_data(df, database_filename):
     
     # save cleaned dataset to sql database
     engine = create_engine('sqlite:///'+database_filename)
-    df.to_sql('disaster_cleaned', engine, index=False)
+    df.to_sql('disaster_cleaned', engine, index=False, if_exists='replace')
 
 
 def main():
